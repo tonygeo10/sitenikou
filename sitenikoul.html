@@ -5,1119 +5,512 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ΔΕΜΗ - Λογιστικές Υπηρεσίες | Επαγγελματικές Λογιστικές Λύσεις</title>
     <meta name="description" content="Αξιόπιστες λογιστικές υπηρεσίες από το 2003. Λογιστική διαχείριση, φοροτεχνικά, μισθοδοσία και σύσταση εταιρειών.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hero.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-color: #1e40af;
-            --primary-light: #3b82f6;
-            --primary-dark: #1e3a8a;
-            --secondary-color: #10b981;
-            --accent-color: #f59e0b;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --border-color: #e2e8f0;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: var(--bg-white);
-            font-size: 16px;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            background: rgba(255, 255, 255, 0.98);
-            box-shadow: var(--shadow-md);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .logo-image {
-            width: 45px;
-            height: 45px;
-            object-fit: contain;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            color: var(--primary-light);
-            transform: translateY(-1px);
-            transition: all 0.2s ease;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-menu a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.75rem 1.25rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-menu a:hover {
-            background: var(--bg-light);
-            color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 50%;
-            background: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu a:hover::after {
-            width: 80%;
-            left: 10%;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: url('https://media.giphy.com/media/3oKIPEqDGUULpEU0aQ/giphy.gif') no-repeat center center/cover;
-            color: #fff;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 60% 20%, rgba(245, 158, 11, 0.06) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(45deg, transparent 40%, rgba(30, 64, 175, 0.03) 50%, transparent 60%),
-                linear-gradient(-45deg, transparent 40%, rgba(16, 185, 129, 0.03) 50%, transparent 60%);
-            z-index: 1;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0; 
-            left: 0;
-            width: 100%; 
-            height: 100%;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.85) 100%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            opacity: 0;
-            transform: translateY(40px);
-            animation: fadeInUp 1.2s ease-out forwards;
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            font-weight: 700;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
-            color: var(--text-light);
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            color: #fff;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            opacity: 0;
-            animation: fadeInUp 1.2s ease-out forwards;
-            animation-delay: 0.6s;
-            box-shadow: var(--shadow-lg);
-            font-size: 1.1rem;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Keyframes */
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-            background: var(--bg-white);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: clamp(2rem, 4vw, 3rem);
-            margin-bottom: 4rem;
-            color: var(--text-dark);
-            font-weight: 700;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            border-radius: 2px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: var(--bg-white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.4s ease;
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .service-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary-light);
-        }
-
-        .service-image {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 2rem;
-            border-radius: 50%;
-            overflow: visible;
-            border: 4px solid var(--primary-color);
-            background: var(--bg-white);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-card:hover .service-image {
-            border-color: var(--secondary-color);
-            transform: scale(1.1);
-        }
-
-        .service-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1.25rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: var(--bg-light);
-        }
-
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .contact-info h3 {
-            font-size: 1.75rem;
-            margin-bottom: 2.5rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background: var(--bg-white);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .contact-icon {
-            font-size: 1.5rem;
-            margin-right: 1.25rem;
-            color: var(--primary-color);
-            width: 40px;
-            text-align: center;
-        }
-
-        .contact-form {
-            background: var(--bg-white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            box-shadow: var(--shadow-md);
-        }
-
-        .form-group {
-            margin-bottom: 1.75rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.75rem;
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 1rem;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            background: var(--bg-white);
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 14px 20px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-light) 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 100%);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 3rem 2rem 1rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: white;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: #94a3b8;
-            text-decoration: none;
-            line-height: 1.7;
-            margin-bottom: 0.5rem;
-            display: block;
-            transition: color 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary-light);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #334155;
-            padding-top: 2rem;
-            text-align: center;
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-menu-toggle:hover {
-            background: var(--bg-light);
-        }
-
-        .mobile-menu-toggle span {
-            width: 28px;
-            height: 3px;
-            background: var(--primary-color);
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(1) {
-            transform: rotate(-45deg) translate(-6px, 6px);
-        }
-
-        .mobile-menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .mobile-menu-toggle.active span:nth-child(3) {
-            transform: rotate(45deg) translate(-6px, -6px);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
+        /* Mobile menu responsive visibility fix */
+        @media (max-width: 767px) {
             .nav-menu {
                 display: none;
+                flex-direction: column;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: var(--bg-white);
-                flex-direction: column;
+                background: #102a43;
                 padding: 1.5rem;
-                box-shadow: var(--shadow-lg);
-                border-top: 1px solid var(--border-color);
+                box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
             }
-
             .nav-menu.active {
-                display: flex;
+                display: flex !important;
             }
-
-            .nav-menu a {
-                padding: 1rem;
-                border-radius: 8px;
-                margin-bottom: 0.5rem;
-            }
-
-            .hero {
-                padding: 0 15px;
-                min-height: 100vh;
-            }
-
-            .hero-content {
-                padding-top: 2rem;
-            }
-
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .service-card {
-                padding: 2rem;
-            }
-
-            .section-title {
-                margin-bottom: 3rem;
-            }
-
-            .services,
-            .contact {
-                padding: 4rem 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .nav-container {
-                padding: 1rem 1.5rem;
-            }
-
-            .hero {
-                padding: 0 10px;
-            }
-
-            .cta-button {
-                padding: 14px 24px;
-                font-size: 1rem;
-            }
-
-            .service-card {
-                padding: 1.5rem;
-            }
-
-            .contact-form {
-                padding: 2rem;
-            }
-        }
-
-        /* Animations and Interactions */
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .slide-in-left {
-            animation: slideInLeft 0.8s ease-out;
-        }
-
-        .slide-in-right {
-            animation: slideInRight 0.8s ease-out;
-        }
-
-        /* Loading states */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
-        }
-
-        /* Success states */
-        .success {
-            background: var(--secondary-color) !important;
-            color: white !important;
-        }
-
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Focus styles for better accessibility */
-        button:focus,
-        input:focus,
-        textarea:focus,
-        select:focus,
-        a:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
         }
     </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">
-                <img src="https://i.postimg.cc/K3rMdCJJ/c23ad8fb.png" alt="ΔΕΜΗ Logo" class="logo-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
-                <span style="display: none;">📊</span>
-                ΔΕΜΗ
+<body class="w-full min-h-screen bg-[#faf9f6] text-[#102a43]">
+
+    <a href="#home" class="skip-link">Μετάβαση στο κυρίως περιεχόμενο</a>
+
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 left-0 w-full z-40 bg-[#102a43] text-white shadow-md transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-5 py-4 flex justify-between items-center">
+            <a href="#home" class="logo flex items-center gap-3">
+                <img src="demi1.png" alt="Demi Accounting Logo" class="logo-image h-10 w-auto" loading="lazy">
+                <span class="font-bold text-xl tracking-wider">ΔΕΜΗ</span>
             </a>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home">Αρχική</a></li>
-                <li><a href="#services">Υπηρεσίες</a></li>
-                <li><a href="#contact">Επικοινωνία</a></li>
+            <ul class="nav-menu flex gap-6 items-center text-sm font-medium" id="nav-menu">
+                <li><a href="#home" class="hover:text-[#d59f43] transition">Αρχική</a></li>
+                <li><a href="#services" class="hover:text-[#d59f43] transition">Υπηρεσίες</a></li>
+                <li><a href="#faq" class="hover:text-[#d59f43] transition">Συχνές Ερωτήσεις</a></li>
+                <li><a href="#contact" class="hover:text-[#d59f43] transition">Επικοινωνία</a></li>
+                <li>
+                    <button onclick="toggleCRM()" class="bg-[#247ba0] px-4 py-2 rounded-xl text-white font-semibold hover:bg-[#1e6584] transition flex items-center gap-2">
+                        <i data-lucide="lock" class="w-4 h-4"></i> CRM
+                    </button>
+                </li>
             </ul>
-            <div class="mobile-menu-toggle" id="mobile-toggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="mobile-menu-toggle md:hidden cursor-pointer flex flex-col gap-1.5" id="mobile-toggle" onclick="toggleMobileMenu()">
+                <span class="w-6 h-0.5 bg-white block"></span>
+                <span class="w-6 h-0.5 bg-white block"></span>
+                <span class="w-6 h-0.5 bg-white block"></span>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Λογιστικές Υπηρεσίες που Απλοποιούν την Επιχείρησή σας</h1>
-            <p>
-                Με προσωπική προσέγγιση και σύγχρονα εργαλεία, σας βοηθάμε να
-                οργανώσετε τα οικονομικά σας και να επικεντρωθείτε στην ανάπτυξη
-                της επιχείρησής σας.
-            </p>
-            <a href="#services" class="cta-button">Μάθε Περισσότερα</a>
+    <section id="home" class="relative flex w-full min-h-[calc(100*min(var(--vh,1vh),1vh))] overflow-hidden text-white">
+        <!-- Background Image -->
+        <img src="demi1.png" alt="Office Background" loading="lazy" class="hero-photo absolute inset-0 h-full w-full object-cover">
+        <div class="hero-shade absolute inset-0"></div>
+        <div class="hero-grain absolute inset-0" aria-hidden="true"></div>
+
+        <div class="relative z-10 flex w-full flex-col px-5 py-7 sm:px-8 sm:py-10 justify-between">
+            
+            <!-- Logo Header Area -->
+            <header class="mx-auto flex w-full max-w-7xl items-center justify-center sm:justify-start">
+                <div class="bg-[#102a43]/80 p-3 rounded-2xl backdrop-blur-md border border-white/10 shadow-lg">
+                    <img src="demi1.png" alt="Demi Accounting Logo" class="h-14 w-auto object-contain">
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <div class="mx-auto flex w-full max-w-7xl flex-1 items-center py-12">
+                <div class="max-w-3xl">
+                    
+                    <!-- Eyebrow -->
+                    <div class="reveal flex items-center gap-4">
+                        <span class="gold-rule" aria-hidden="true"></span>
+                        <p class="font-bold uppercase tracking-[.17em] text-[#d59f43] text-sm sm:text-base">ΣΙΓΟΥΡΙΑ ΣΕ ΚΑΘΕ ΑΠΟΦΑΣΗ</p>
+                    </div>
+
+                    <!-- Title -->
+                    <h1 class="display-font reveal reveal-delay-one mt-6 max-w-3xl text-white text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                        Λογιστικές Υπηρεσίες που Απλοποιούν την Επιχείρησή Σας
+                    </h1>
+
+                    <!-- Description -->
+                    <p class="reveal reveal-delay-two mt-6 max-w-2xl leading-relaxed text-slate-100 text-base sm:text-lg">
+                        Με προσωπική προσέγγιση και σύγχρονα εργαλεία, σας βοηθάμε να οργανώσετε τα οικονομικά σας και να επικεντρωθείτε στην ανάπτυξη της επιχείρησής σας.
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="reveal reveal-delay-three mt-9 flex flex-wrap items-center gap-4">
+                        <a href="tel:+302741072608" class="inline-flex items-center gap-3 rounded-xl px-7 py-4 font-bold bg-[#d59f43] text-[#102a43] shadow-xl transition hover:-translate-y-0.5 hover:bg-[#c28e39]">
+                            <i data-lucide="phone-call" class="h-5 w-5" aria-hidden="true"></i>
+                            <span>Καλέστε μας σήμερα</span>
+                        </a> 
+                        
+                        <button id="details-toggle" type="button" aria-expanded="false" aria-controls="hero-details" class="cta-secondary inline-flex items-center gap-3 rounded-xl border border-white/80 bg-transparent px-7 py-4 font-bold text-white transition hover:bg-white/10">
+                            <span>Γιατί να μας επιλέξετε</span>
+                            <i data-lucide="chevron-down" class="chevron-icon h-5 w-5" aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <!-- Expandable Details Panel -->
+                    <div id="hero-details" class="details-panel">
+                        <div>
+                            <aside class="mt-6 max-w-xl rounded-2xl border border-white/20 px-6 py-5 backdrop-blur-md bg-[#102a43]/70 shadow-2xl">
+                                <div class="flex items-start gap-4">
+                                    <i data-lucide="shield-check" class="mt-1 h-6 w-6 shrink-0 text-[#d59f43]" aria-hidden="true"></i>
+                                    <div class="w-full">
+                                        <h2 class="font-bold text-lg text-white">Τα πλεονεκτήματα του γραφείου μας</h2>
+                                        <p class="mt-1 text-xs sm:text-sm leading-relaxed text-slate-200">Εμπειρία, συνέπεια και άμεση προσωπική εξυπηρέτηση σε κάθε επαγγελματικό βήμα.</p>
+                                        <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                                            <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-xs sm:text-sm font-semibold text-white">✓ Πολυετής Εμπειρία</div>
+                                            <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-xs sm:text-sm font-semibold text-white">✓ Άμεση Ενημέρωση myDATA</div>
+                                            <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-xs sm:text-sm font-semibold text-white">✓ Προσωπικό Φόρουμ & CRM</div>
+                                            <div class="rounded-xl border border-white/15 bg-white/5 px-3 py-2.5 text-xs sm:text-sm font-semibold text-white">✓ Οικονομική Στήλη & Cash-flow</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </aside>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Τι Προσφέρουμε</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-image">
-                        <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: 0 auto;">
-                            <!-- Professional woman with laptop -->
-                            <circle cx="40" cy="40" r="40" fill="#ecfdf5"/>
-                            <!-- Face -->
-                            <circle cx="40" cy="32" r="12" fill="#fbbf24"/>
-                            <!-- Hair -->
-                            <path d="M28 22 Q40 16 52 22 Q54 28 52 32 Q40 34 28 32 Q26 28 28 22" fill="#7c2d12"/>
-                            <!-- Eyes -->
-                            <circle cx="36" cy="30" r="1.5" fill="#1f2937"/>
-                            <circle cx="44" cy="30" r="1.5" fill="#1f2937"/>
-                            <!-- Smile -->
-                            <path d="M36 36 Q40 38 44 36" stroke="#1f2937" stroke-width="1" fill="none"/>
-                            <!-- Business attire -->
-                            <rect x="32" y="44" width="16" height="20" fill="#059669" rx="2"/>
-                            <!-- Blouse -->
-                            <rect x="34" y="46" width="12" height="18" fill="#ffffff"/>
-                            <!-- Laptop -->
-                            <rect x="26" y="52" width="12" height="8" fill="#374151" rx="1"/>
-                            <rect x="27" y="53" width="10" height="6" fill="#1f2937"/>
-                            <rect x="28" y="54" width="8" height="4" fill="#3b82f6"/>
-                            <!-- Money symbols -->
-                            <text x="50" y="52" font-family="Arial" font-size="8" fill="#10b981">€</text>
-                            <text x="52" y="58" font-family="Arial" font-size="6" fill="#10b981">$</text>
-                        </svg>
+    <section id="services" class="w-full py-20 sm:py-24 bg-white">
+        <div class="mx-auto w-full max-w-7xl px-5 sm:px-8">
+            <div class="mb-12 max-w-2xl">
+                <p class="mb-3 text-sm font-bold uppercase tracking-[0.16em] text-[#247ba0]">Τι Προσφέρουμε</p>
+                <h2 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">Εξειδικευμένες Υπηρεσίες</h2>
+                <p class="leading-relaxed text-slate-600">Επιλέξτε την υπηρεσία που σας ενδιαφέρει για να δείτε αναλυτικές πληροφορίες.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Service 1 -->
+                <article class="service-card rounded-2xl p-7 bg-[#faf9f6] flex flex-col justify-between border border-slate-200 shadow-sm">
+                    <div>
+                        <div class="service-symbol mb-6 text-[#247ba0]"><i data-lucide="book-open" class="h-6 w-6"></i></div>
+                        <h3 class="mb-3 font-bold text-lg">Λογιστική Διαχείριση</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Τήρηση βιβλίων απλογραφικών και διπλογραφικών, σύνταξη ισολογισμών.</p>
                     </div>
-                    <h3>Λογιστική Διαχείριση</h3>
-                    <p>Πλήρη λογιστική διαχείριση, τήρηση βιβλίων και κατάρτιση οικονομικών καταστάσεων με ακρίβεια και επαγγελματισμό</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="45" cy="45" r="45" fill="#fef3c7"/>
-                            <circle cx="45" cy="36" r="14" fill="#f59e0b"/>
-                            <path d="M33 27 Q45 22 57 27 Q57 32 45 34 Q33 32 33 27" fill="#451a03"/>
-                            <circle cx="40" cy="34" r="2" fill="#1f2937"/>
-                            <circle cx="50" cy="34" r="2" fill="#1f2937"/>
-                            <circle cx="40" cy="34" r="4" stroke="#374151" stroke-width="1.5" fill="none"/>
-                            <circle cx="50" cy="34" r="4" stroke="#374151" stroke-width="1.5" fill="none"/>
-                            <line x1="44" y1="34" x2="46" y2="34" stroke="#374151" stroke-width="1.5"/>
-                            <path d="M40 40 Q45 42 50 40" stroke="#1f2937" stroke-width="1.5" fill="none"/>
-                            <rect x="36" y="50" width="18" height="22" fill="#374151" rx="3"/>
-                            <polygon points="45,52 42,57 48,57" fill="#dc2626"/>
-                            <rect x="54" y="54" width="10" height="12" fill="#ffffff" stroke="#d1d5db"/>
-                            <line x1="56" y1="56" x2="62" y2="56" stroke="#6b7280" stroke-width="1"/>
-                            <line x1="56" y1="58" x2="62" y2="58" stroke="#6b7280" stroke-width="1"/>
-                            <line x1="56" y1="60" x2="62" y2="60" stroke="#6b7280" stroke-width="1"/>
-                        </svg>
+                    <button onclick="openServiceModal('Λογιστική Διαχείριση', 'Πλήρης μηχανογραφική τήρηση βιβλίων (απλογραφικών & διπλογραφικών) σύμφωνα με τα ΕΛΠ, ενημέρωση πελατών για τη ροή εσόδων-εξόδων, μηνιαίες συμφωνίες και προετοιμασία οικονομικών καταστάσεων τέλους χρήσης.')" class="mt-6 text-xs font-bold text-[#247ba0] hover:underline flex items-center gap-1">Αναλυτικά →</button>
+                </article>
+                
+                <!-- Service 2 -->
+                <article class="service-card rounded-2xl p-7 bg-[#faf9f6] flex flex-col justify-between border border-slate-200 shadow-sm">
+                    <div>
+                        <div class="service-symbol mb-6 text-[#247ba0]"><i data-lucide="file-text" class="h-6 w-6"></i></div>
+                        <h3 class="mb-3 font-bold text-lg">Φοροτεχνικές Υπηρεσίες</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Υποβολή δηλώσεων (Ε1, Ε2, Ε3, ΦΠΑ) και φορολογικός σχεδιασμός.</p>
                     </div>
-                    <h3>Φοροτεχνικές Υπηρεσίες</h3>
-                    <p>Υποβολή δηλώσεων, φορολογικός σχεδιασμός και αντιμετώπιση ελέγχων με εξειδικευμένη γνώση</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="45" cy="45" r="45" fill="#ecfdf5"/>
-                            <circle cx="45" cy="36" r="14" fill="#fbbf24"/>
-                            <path d="M31 25 Q45 18 59 25 Q61 32 59 36 Q45 38 31 36 Q29 32 31 25" fill="#7c2d12"/>
-                            <circle cx="40" cy="34" r="2" fill="#1f2937"/>
-                            <circle cx="50" cy="34" r="2" fill="#1f2937"/>
-                            <path d="M40 40 Q45 42 50 40" stroke="#1f2937" stroke-width="1.5" fill="none"/>
-                            <rect x="36" y="50" width="18" height="22" fill="#059669" rx="3"/>
-                            <rect x="38" y="52" width="14" height="20" fill="#ffffff"/>
-                            <rect x="29" y="58" width="14" height="10" fill="#374151" rx="2"/>
-                            <rect x="30" y="59" width="12" height="8" fill="#1f2937"/>
-                            <rect x="31" y="60" width="10" height="6" fill="#3b82f6"/>
-                            <text x="56" y="58" font-family="Arial" font-size="10" fill="#10b981">€</text>
-                            <text x="58" y="65" font-family="Arial" font-size="8" fill="#10b981">$</text>
-                        </svg>
+                    <button onclick="openServiceModal('Φοροτεχνικές Υπηρεσίες', 'Σύνταξη και ηλεκτρονική υποβολή όλων των φορολογικών δηλώσεων (Ε1, Ε2, Ε3, ΦΠΑ, παρακρατούμενοι φόροι), έλεγχος ηλεκτρονικών βιβλίων myDATA και καθοδήγηση για νόμιμη ελαχιστοποίηση φόρων.')" class="mt-6 text-xs font-bold text-[#247ba0] hover:underline flex items-center gap-1">Αναλυτικά →</button>
+                </article>
+                
+                <!-- Service 3 -->
+                <article class="service-card rounded-2xl p-7 bg-[#faf9f6] flex flex-col justify-between border border-slate-200 shadow-sm">
+                    <div>
+                        <div class="service-symbol mb-6 text-[#247ba0]"><i data-lucide="euro" class="h-6 w-6"></i></div>
+                        <h3 class="mb-3 font-bold text-lg">Μισθοδοσία Προσωπικού</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Υπολογισμός μισθοδοσίας, ΑΠΔ, προσλήψεις και εργατικά θέματα.</p>
                     </div>
-                    <h3>Μισθοδοσία</h3>
-                    <p>Διαχείριση μισθοδοσίας και ασφαλιστικών υποχρεώσεων με πλήρη συμμόρφωση στη νομοθεσία</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="45" cy="45" r="45" fill="#fdf4ff"/>
-                            <circle cx="45" cy="36" r="14" fill="#f59e0b"/>
-                            <path d="M36 29 Q45 25 54 29 Q54 34 45 36 Q36 34 36 29" fill="#1c1917"/>
-                            <circle cx="40" cy="34" r="2" fill="#1f2937"/>
-                            <circle cx="50" cy="34" r="2" fill="#1f2937"/>
-                            <path d="M40 40 Q45 42 50 40" stroke="#1f2937" stroke-width="1.5" fill="none"/>
-                            <rect x="36" y="50" width="18" height="22" fill="#7c3aed" rx="3"/>
-                            <rect x="40" y="52" width="10" height="20" fill="#ffffff"/>
-                            <polygon points="45,52 42,58 48,58" fill="#dc2626"/>
-                            <rect x="54" y="54" width="10" height="14" fill="#6b7280" stroke="#374151"/>
-                            <rect x="55" y="56" width="3" height="3" fill="#ffffff"/>
-                            <rect x="59" y="56" width="3" height="3" fill="#ffffff"/>
-                            <rect x="55" y="60" width="3" height="3" fill="#ffffff"/>
-                            <rect x="59" y="60" width="3" height="3" fill="#ffffff"/>
-                            <rect x="57" y="64" width="3" height="4" fill="#374151"/>
-                        </svg>
+                    <button onclick="openServiceModal('Μισθοδοσία Προσωπικού', 'Υπολογισμός μηνιαίας μισθοδοσίας, υποβολή ΑΠΔ, διαχείριση προσλήψεων, απολύσεων, συμβάσεων εργασίας στο ΠΣ ΕΡΓΑΝΗ, και συμβουλευτική για εργατικά ζητήματα.')" class="mt-6 text-xs font-bold text-[#247ba0] hover:underline flex items-center gap-1">Αναλυτικά →</button>
+                </article>
+                
+                <!-- Service 4 -->
+                <article class="service-card rounded-2xl p-7 bg-[#faf9f6] flex flex-col justify-between border border-slate-200 shadow-sm">
+                    <div>
+                        <div class="service-symbol mb-6 text-[#247ba0]"><i data-lucide="landmark" class="h-6 w-6"></i></div>
+                        <h3 class="mb-3 font-bold text-lg">Συστάσεις & Εταιρείες</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Ίδρυση νέων εταιρειών (ΙΚΕ, ΟΕ, ΕΕ, ΑΕ) και ενάρξεις ατομικών.</p>
                     </div>
-                    <h3>Σύσταση Εταιρειών</h3>
-                    <p>Συμβουλευτική και διεκπεραίωση για νέες επιχειρήσεις με ολοκληρωμένη υποστήριξη</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="45" cy="45" r="45" fill="#fef7ed"/>
-                            <circle cx="45" cy="36" r="14" fill="#fbbf24"/>
-                            <path d="M33 27 Q45 20 57 27 Q59 34 45 36 Q31 34 33 27" fill="#a16207"/>
-                            <circle cx="40" cy="34" r="2" fill="#1f2937"/>
-                            <circle cx="50" cy="34" r="2" fill="#1f2937"/>
-                            <path d="M40 40 Q45 42 50 40" stroke="#1f2937" stroke-width="1.5" fill="none"/>
-                            <rect x="36" y="50" width="18" height="22" fill="#ea580c" rx="3"/>
-                            <rect x="38" y="52" width="14" height="20" fill="#ffffff"/>
-                            <rect x="54" y="54" width="12" height="10" fill="#ffffff" stroke="#d1d5db"/>
-                            <rect x="55" y="59" width="2" height="4" fill="#3b82f6"/>
-                            <rect x="58" y="57" width="2" height="6" fill="#10b981"/>
-                            <rect x="61" y="58" width="2" height="5" fill="#f59e0b"/>
-                            <rect x="64" y="56" width="2" height="7" fill="#ef4444"/>
-                            <polyline points="55,62 58,59 61,60 64,57 67,58" stroke="#8b5cf6" stroke-width="1" fill="none"/>
-                        </svg>
+                    <button onclick="openServiceModal('Συστάσεις & Εταιρείες', 'Ίδρυση κάθε νομικής μορφής εταιρείας (ΙΚΕ, ΕΠΕ, ΟΕ, ΕΕ, ΑΕ) ή ατομικής επιχείρησης, τροποποιήσεις καταστατικών, συγχωνεύσεις και λύσεις επιχειρήσεων.')" class="mt-6 text-xs font-bold text-[#247ba0] hover:underline flex items-center gap-1">Αναλυτικά →</button>
+                </article>
+                
+                <!-- Service 5 -->
+                <article class="service-card rounded-2xl p-7 bg-[#faf9f6] flex flex-col justify-between border border-slate-200 shadow-sm">
+                    <div>
+                        <div class="service-symbol mb-6 text-[#247ba0]"><i data-lucide="bar-chart-3" class="h-6 w-6"></i></div>
+                        <h3 class="mb-3 font-bold text-lg">Χρηματοοικονομική Ανάλυση</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Δείκτες βιωσιμότητας, προϋπολογισμοί cash-flow και αναλύσεις.</p>
                     </div>
-                    <h3>Οικονομική Ανάλυση</h3>
-                    <p>Αναφορές και αναλύσεις για στρατηγικές αποφάσεις με εξειδικευμένα εργαλεία</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-image">
-                        <svg width="90" height="90" viewBox="0 0 90 90" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="45" cy="45" r="45" fill="#f0fdf4"/>
-                            <circle cx="45" cy="36" r="14" fill="#f59e0b"/>
-                            <path d="M36 28 Q45 22 54 28 Q54 33 45 35 Q36 33 36 28" fill="#374151"/>
-                            <circle cx="40" cy="34" r="2" fill="#1f2937"/>
-                            <circle cx="50" cy="34" r="2" fill="#1f2937"/>
-                            <circle cx="40" cy="34" r="4" stroke="#374151" stroke-width="1.5" fill="none"/>
-                            <circle cx="50" cy="34" r="4" stroke="#374151" stroke-width="1.5" fill="none"/>
-                            <line x1="44" y1="34" x2="46" y2="34" stroke="#374151" stroke-width="1.5"/>
-                            <path d="M40 40 Q45 42 50 40" stroke="#1f2937" stroke-width="1.5" fill="none"/>
-                            <rect x="36" y="50" width="18" height="22" fill="#16a34a" rx="3"/>
-                            <rect x="40" y="52" width="10" height="20" fill="#ffffff"/>
-                            <circle cx="58" cy="56" r="5" stroke="#374151" stroke-width="2" fill="none"/>
-                            <line x1="62" y1="60" x2="66" y2="64" stroke="#374151" stroke-width="2"/>
-                            <rect x="54" y="63" width="8" height="5" fill="#ffffff" stroke="#d1d5db"/>
-                            <line x1="55" y1="64" x2="60" y2="64" stroke="#6b7280" stroke-width="0.5"/>
-                            <line x1="55" y1="66" x2="60" y2="66" stroke="#6b7280" stroke-width="0.5"/>
-                        </svg>
+                    <button onclick="openServiceModal('Χρηματοοικονομική Ανάλυση', 'Ανάλυση ισολογισμών, υπολογισμός δεικτών ρευστότητας και αποδοτικότητας, προϋπολογισμοί ταμειακών ροών (cash flow) και υποστήριξη σε χρηματοδοτικά προγράμματα.')" class="mt-6 text-xs font-bold text-[#247ba0] hover:underline flex items-center gap-1">Αναλυτικά →</button>
+                </article>
+                
+                <!-- Service 6 -->
+                <article class="service-card rounded-2xl p-7 bg-[#faf9f6] flex flex-col justify-between border border-slate-200 shadow-sm">
+                    <div>
+                        <div class="service-symbol mb-6 text-[#247ba0]"><i data-lucide="shield-check" class="h-6 w-6"></i></div>
+                        <h3 class="mb-3 font-bold text-lg">Φορολογική Συμβουλευτική</h3>
+                        <p class="text-sm leading-relaxed text-slate-600">Στοχευμένες λύσεις για μείωση του νόμιμου φορολογικού βάρους.</p>
                     </div>
-                    <h3>Έλεγχος & Συμβουλευτική</h3>
-                    <p>Εσωτερικός έλεγχος και προετοιμασία για εξωτερικούς ελέγχους με εξειδικευμένη τεχνογνωσία</p>
+                    <button onclick="openServiceModal('Φορολογική Συμβουλευτική', 'Στρατηγικός φορολογικός σχεδιασμός για φυσικά και νομικά πρόσωπα, καθοδήγηση σε επενδυτικά πλάνα και προστασία σε φορολογικούς ελέγχους.')" class="mt-6 text-xs font-bold text-[#247ba0] hover:underline flex items-center gap-1">Αναλυτικά →</button>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ & Newsletter Section -->
+    <section id="faq" class="py-20 bg-[#f7f4ed]">
+        <div class="max-w-4xl mx-auto px-5">
+            <h2 class="text-3xl font-bold mb-10 text-center">Συχνές Ερωτήσεις</h2>
+            <div class="space-y-4 mb-16">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <button class="faq-question w-full text-left font-bold flex justify-between items-center" aria-expanded="true">
+                        Τι χρειάζομαι για να ανοίξω βιβλία ως ελεύθερος επαγγελματίας?
+                        <span>▾</span>
+                    </button>
+                    <div class="faq-answer mt-3 text-slate-600 text-sm leading-relaxed" style="display: block;">
+                        Για την έναρξη δραστηριότητας απαιτούνται: <strong>ΑΦΜ</strong>, <strong>αστυνομική ταυτότητα</strong>, <strong>μισθωτήριο επαγγελματικής έδρας</strong>, και εγγραφή στο επιμελητήριο. Το γραφείο μας αναλαμβάνει όλη τη διαδικασία.
+                    </div>
                 </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <button class="faq-question w-full text-left font-bold flex justify-between items-center" aria-expanded="false">
+                        Πόσο διαρκεί η σύσταση εταιρείας?
+                        <span>▾</span>
+                    </button>
+                    <div class="faq-answer mt-3 text-slate-600 text-sm leading-relaxed" style="display: none;">
+                        Συνήθως 5-10 εργάσιμες ημέρες, ανάλογα με την εταιρική μορφή και τα απαραίτητα δικαιολογητικά.
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-slate-200">
+                    <button class="faq-question w-full text-left font-bold flex justify-between items-center" aria-expanded="false">
+                        Πώς μπορώ να στείλω δικαιολογητικά στο λογιστικό γραφείο?
+                        <span>▾</span>
+                    </button>
+                    <div class="faq-answer mt-3 text-slate-600 text-sm leading-relaxed" style="display: none;">
+                        Μπορείτε να τα στείλετε μέσω email σε PDF/φωτογραφία, μέσω ασφαλούς cloud φακέλου ή να τα παραδώσετε έντυπα.
+                    </div>
+                </div>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="bg-[#102a43] text-white p-8 rounded-3xl text-center">
+                <h3 class="text-2xl font-bold mb-2">Ενημερωθείτε πρώτοι</h3>
+                <p class="text-slate-300 text-sm mb-6">Εγγραφείτε στο newsletter μας για νέα, φορολογικές αλλαγές και χρήσιμες συμβουλές.</p>
+                <form action="https://formspree.io/f/xgvlpdyw" method="POST" class="newsletter-form flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                    <input type="text" name="website" class="hidden" tabindex="-1" autocomplete="off">
+                    <input type="email" name="email" required placeholder="Το email σας" class="newsletter-input flex-1 p-3 rounded-xl text-slate-900 focus:outline-none">
+                    <button type="submit" class="newsletter-btn bg-[#d59f43] text-[#102a43] font-bold px-6 py-3 rounded-xl hover:bg-[#c28e39] transition">Εγγραφή</button>
+                </form>
+                <div class="form-status text-xs mt-3" aria-live="polite"></div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Επικοινωνία</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Στοιχεία Επικοινωνίας</h3>
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div>
-                            <strong>Διεύθυνση</strong><br>
-                            Κεντρική Οδός 123, Αθήνα 10564
-                        </div>
+    <section id="contact" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8">
+            <h2 class="text-3xl font-bold mb-12 text-center">Στοιχεία & Φόρμα Επικοινωνίας</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                
+                <!-- Info & Map -->
+                <div class="space-y-6">
+                    <div class="overflow-hidden rounded-2xl border border-slate-200 shadow-sm">
+                        <iframe title="Τοποθεσία Λογιστικού Γραφείου" src="https://www.google.com/maps?q=37.940852,22.930120&z=17&output=embed" width="100%" height="240" style="border:0;" allowfullscreen loading="lazy"></iframe>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div>
-                            <strong>Τηλέφωνο</strong><br>
-                            210 123-4567
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">✉️</div>
-                        <div>
-                            <strong>Email</strong><br>
-                            info@demi-accounting.gr
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">🕒</div>
-                        <div>
-                            <strong>Ώρες Λειτουργίας</strong><br>
-                            Δευτέρα - Παρασκευή: 9:00-18:00
-                        </div>
+                    <div class="space-y-4 text-slate-700">
+                        <p class="flex items-center gap-3"><span>📍</span> <strong>Διεύθυνση:</strong> Αποστόλου Παύλου 27-29, Κόρινθος[cite: 1]</p>
+                        <p class="flex items-center gap-3"><span>📞</span> <strong>Τηλέφωνο:</strong> 2741072608, 2741026033[cite: 1]</p>
+                        <p class="flex items-center gap-3"><span>✉️</span> <strong>Email:</strong> info@demi-accounting.gr[cite: 1]</p>
+                        <p class="flex items-center gap-3"><span>⏰</span> <strong>Ώρες Λειτουργίας:</strong> Δευτέρα - Παρασκευή: 8:00-13:30[cite: 1]</p>
                     </div>
                 </div>
                 
-                <form class="contact-form" onsubmit="handleFormSubmit(event)" id="contact-form">
-                    <div class="form-group">
-                        <label for="name">Όνομα *</label>
-                        <input type="text" id="name" name="name" required>
+                <!-- Form -->
+                <form class="bg-[#faf9f6] p-8 rounded-3xl border border-slate-200 shadow-sm space-y-4" id="contact-form">
+                    <h3 class="text-xl font-bold text-[#102a43] mb-4">Στείλτε μας μήνυμα</h3>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Όνομα *</label>
+                        <input type="text" id="client-name" name="name" required class="w-full p-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:border-[#247ba0]">
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email *</label>
-                        <input type="email" id="email" name="email" required>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Email *</label>
+                        <input type="email" id="client-email" name="email" required class="w-full p-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:border-[#247ba0]">
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Τηλέφωνο</label>
-                        <input type="tel" id="phone" name="phone">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Τηλέφωνο</label>
+                        <input type="tel" id="client-phone" name="phone" class="w-full p-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:border-[#247ba0]">
                     </div>
-                    <div class="form-group">
-                        <label for="service">Υπηρεσία Ενδιαφέροντος</label>
-                        <select id="service" name="service">
-                            <option value="">Επιλέξτε υπηρεσία</option>
-                            <option value="accounting">Λογιστική Διαχείριση</option>
-                            <option value="tax">Φοροτεχνικές Υπηρεσίες</option>
-                            <option value="payroll">Μισθοδοσία</option>
-                            <option value="company">Σύσταση Εταιρείας</option>
-                            <option value="analysis">Οικονομική Ανάλυση</option>
-                            <option value="audit">Έλεγχος & Συμβουλευτική</option>
-                            <option value="other">Άλλο</option>
-                        </select>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Μήνυμα</label>
+                        <textarea id="client-message" name="message" rows="4" placeholder="Περιγράψτε τις ανάγκες σας..." class="w-full p-3 rounded-xl border border-slate-300 bg-white focus:outline-none focus:border-[#247ba0]"></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="message">Μήνυμα</label>
-                        <textarea id="message" name="message" rows="4" placeholder="Περιγράψτε τις ανάγκες σας..."></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn" id="submit-btn">Αποστολή Μηνύματος</button>
+                    <button type="submit" class="w-full bg-[#102a43] text-white py-3.5 rounded-xl font-semibold hover:bg-[#173f5f] transition">Αποστολή Μηνύματος</button>
+                    <p id="form-success" class="text-green-600 text-center text-sm mt-3 hidden">Το μήνυμα καταχωρήθηκε επιτυχώς στο CRM!</p>
                 </form>
+
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>📊 ΔΕΜΗ</h3>
-                <p>Αξιόπιστες λογιστικές υπηρεσίες από το 2003. Εξυπηρετούμε με επαγγελματισμό, διακριτικότητα και προσωπική προσέγγιση.</p>
-                <p><strong>ΑΦΜ:</strong> 123456789</p>
-                <p><strong>Άδεια:</strong> Α' Τάξης</p>
+    <footer class="bg-[#102a43] text-white py-12">
+        <div class="max-w-7xl mx-auto px-5 grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h3 class="font-bold text-lg mb-3">Λογιστικό Γραφείο Δέμη</h3>
+                <p class="text-slate-300 text-sm">Οικογενειακή επιχείρηση με τρεις γενιές παρουσίας από το 1973, προσφέροντας αξιόπιστες λογιστικές και φοροτεχνικές υπηρεσίες[cite: 1].</p>
             </div>
-            <div class="footer-section">
-                <h3>Υπηρεσίες</h3>
-                <a href="#services">Λογιστική Διαχείριση</a>
-                <a href="#services">Φοροτεχνικές Υπηρεσίες</a>
-                <a href="#services">Μισθοδοσία</a>
-                <a href="#services">Σύσταση Εταιρειών</a>
-                <a href="#services">Οικονομική Ανάλυση</a>
-                <a href="#services">Έλεγχος & Συμβουλευτική</a>
+            <div>
+                <h3 class="font-bold text-lg mb-3">Υπηρεσίες</h3>
+                <ul class="space-y-2 text-sm text-slate-300">
+                    <li><a href="#services" class="hover:text-[#d59f43]">Λογιστική Διαχείριση</a></li>
+                    <li><a href="#services" class="hover:text-[#d59f43]">Φοροτεχνικές Υπηρεσίες</a></li>
+                    <li><a href="#services" class="hover:text-[#d59f43]">Μισθοδοσία</a></li>
+                    <li><a href="#services" class="hover:text-[#d59f43]">Σύσταση Εταιρειών</a></li>
+                </ul>
             </div>
-            <div class="footer-section">
-                <h3>Επικοινωνία</h3>
-                <p>📍 Κεντρική Οδός 123, Αθήνα 10564</p>
-                <p>📞 210 123-4567</p>
-                <p>📱 6944 123-456</p>
-                <p>✉️ info@demi-accounting.gr</p>
-                <p>🌐 www.demi-accounting.gr</p>
+            <div>
+                <h3 class="font-bold text-lg mb-3">Επικοινωνία</h3>
+                <ul class="space-y-2 text-sm text-slate-300">
+                    <li>📍 Αποστόλου Παύλου 27-29, Κόρινθος[cite: 1]</li>
+                    <li>📞 2741072608 / 2741026033[cite: 1]</li>
+                    <li>✉️ info@demi-accounting.gr[cite: 1]</li>
+                </ul>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 ΔΕΜΗ - Λογιστικές Υπηρεσίες. Όλα τα δικαιώματα διατηρούνται. | Σχεδιασμός & Ανάπτυξη: Canva Code</p>
+        <div class="max-w-7xl mx-auto px-5 pt-8 border-t border-white/10 text-center text-xs text-slate-400">
+            <p>&copy; 2026 ΔΕΜΗ - Λογιστικές Υπηρεσίες. Όλα τα δικαιώματα διατηρούνται.</p>
         </div>
     </footer>
 
+    <!-- Service Details Modal -->
+    <div id="service-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl p-6 shadow-2xl relative">
+            <button onclick="closeServiceModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 font-bold text-lg">✕</button>
+            <h3 id="modal-service-title" class="text-2xl font-bold mb-4 text-[#102a43]"></h3>
+            <p id="modal-service-desc" class="text-slate-600 leading-relaxed text-sm mb-6"></p>
+            <a href="#contact" onclick="closeServiceModal()" class="block text-center bg-[#247ba0] text-white py-3 rounded-xl font-semibold hover:bg-[#1e6584]">Ενδιαφέρομαι για την υπηρεσία</a>
+        </div>
+    </div>
+
+    <!-- CRM Modal -->
+    <div id="crm-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]">
+            
+            <!-- Login View -->
+            <div id="crm-login-view" class="p-8 text-center max-w-md mx-auto my-auto w-full">
+                <h3 class="text-2xl font-bold mb-3 text-[#102a43]">Είσοδος Διαχειριστή (CRM)</h3>
+                <p class="text-sm text-slate-600 mb-6">Πληκτρολογήστε τον κωδικό πρόσβασης (<strong>1234</strong>).</p>
+                <input type="password" id="crm-password" placeholder="Κωδικός πρόσβασης" class="w-full p-3 border rounded-xl mb-4 text-center focus:outline-none focus:border-[#247ba0]">
+                <button onclick="checkCRMLogin()" class="w-full bg-[#247ba0] text-white py-3 rounded-xl font-semibold hover:bg-[#1e6584] transition">Σύνδεση</button>
+                <p id="login-error" class="text-red-500 text-xs mt-2 hidden">Λάθος κωδικός πρόσβασης.</p>
+                <button onclick="toggleCRM()" class="mt-4 text-xs text-slate-500 underline cursor-pointer">Κλείσιμο</button>
+            </div>
+
+            <!-- Dashboard View -->
+            <div id="crm-dashboard-view" class="hidden flex flex-col h-full flex-1">
+                <div class="bg-[#102a43] text-white p-5 flex justify-between items-center">
+                    <h3 class="font-bold text-lg">Πάνελ Πελατών (CRM Dashboard)</h3>
+                    <button onclick="toggleCRM()" class="text-sm bg-white/10 px-3 py-1.5 rounded-lg hover:bg-white/20 transition cursor-pointer">Κλείσιμο X</button>
+                </div>
+                <div class="p-6 overflow-y-auto flex-1 bg-slate-50">
+                    <p class="text-sm text-slate-600 mb-4">Αιτήματα επικοινωνίας από πελάτες:</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse bg-white rounded-xl shadow-sm overflow-hidden border border-slate-200">
+                            <thead>
+                                <tr class="bg-slate-200 text-xs font-bold text-slate-700 uppercase">
+                                    <th class="p-3">Ημερομηνία</th>
+                                    <th class="p-3">Όνομα</th>
+                                    <th class="p-3">Email</th>
+                                    <th class="p-3">Τηλέφωνο</th>
+                                    <th class="p-3">Μήνυμα</th>
+                                </tr>
+                            </thead>
+                            <tbody id="crm-leads-table" class="text-sm divide-y divide-slate-100">
+                                <!-- Φορτώνονται δυναμικά -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Consolidated JavaScript -->
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
         });
 
-        // Mobile menu toggle
+        // Mobile Menu Toggle
         function toggleMobileMenu() {
-            const navMenu = document.getElementById('nav-menu');
-            const mobileToggle = document.getElementById('mobile-toggle');
-            
-            navMenu.classList.toggle('active');
-            mobileToggle.classList.toggle('active');
+            document.getElementById('nav-menu').classList.toggle('active');
         }
 
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                const navMenu = document.getElementById('nav-menu');
-                const mobileToggle = document.getElementById('mobile-toggle');
-                navMenu.classList.remove('active');
-                mobileToggle.classList.remove('active');
-            });
-        });
-
-        // Enhanced form submission
-        function handleFormSubmit(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const submitBtn = document.getElementById('submit-btn');
-            const formData = new FormData(form);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            
-            // Basic validation
-            if (!name || !email) {
-                alert('Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.');
-                return;
-            }
-            
-            // Email validation
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                alert('Παρακαλώ εισάγετε έγκυρη διεύθυνση email.');
-                return;
-            }
-            
-            // Loading state
-            submitBtn.classList.add('loading');
-            submitBtn.textContent = 'Αποστέλλεται...';
-            submitBtn.disabled = true;
-            
-            // Simulate form submission
-            setTimeout(() => {
-                submitBtn.classList.remove('loading');
-                submitBtn.classList.add('success');
-                submitBtn.textContent = 'Εστάλη Επιτυχώς!';
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                document.querySelectorAll('.faq-question').forEach(b => b.setAttribute('aria-expanded', 'false'));
+                document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
                 
-                alert(`Ευχαριστούμε ${name}! Το μήνυμά σας έχει σταλεί επιτυχώς. Θα επικοινωνήσουμε μαζί σας σύντομα στο ${email}.`);
-                
-                form.reset();
-                
-                setTimeout(() => {
-                    submitBtn.classList.remove('success');
-                    submitBtn.textContent = 'Αποστολή Μηνύματος';
-                    submitBtn.disabled = false;
-                }, 3000);
-            }, 2000);
-        }
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
+                if (!expanded) {
+                    btn.setAttribute('aria-expanded', 'true');
+                    btn.nextElementSibling.style.display = 'block';
                 }
             });
         });
 
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('service-card')) {
-                        entry.target.classList.add('fade-in');
-                    } else if (entry.target.classList.contains('contact-item')) {
-                        entry.target.classList.add('slide-in-right');
-                    } else {
-                        entry.target.classList.add('fade-in');
-                    }
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements for animation
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.service-card, .contact-item').forEach(element => {
-                observer.observe(element);
-            });
-        });
-
-        // Keyboard navigation support
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const navMenu = document.getElementById('nav-menu');
-                const mobileToggle = document.getElementById('mobile-toggle');
-                if (navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    mobileToggle.classList.remove('active');
-                }
+        // Combined Startup Initialization (Lucide icons, details toggle, CRM loading)
+        document.addEventListener("DOMContentLoaded", () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
             }
-        });
+            loadLeads();
 
-        // Performance optimization: Lazy load heavy content
-        if ('IntersectionObserver' in window) {
-            const lazyElements = document.querySelectorAll('[data-lazy]');
-            const lazyObserver = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const element = entry.target;
-                        element.src = element.dataset.lazy;
-                        element.removeAttribute('data-lazy');
-                        lazyObserver.unobserve(element);
-                    }
+            const detailsToggle = document.getElementById("details-toggle");
+            const detailsPanel = document.getElementById("hero-details");
+
+            if (detailsToggle && detailsPanel) {
+                detailsToggle.addEventListener("click", () => {
+                    const isOpen = detailsToggle.getAttribute("aria-expanded") === "true";
+                    detailsToggle.setAttribute("aria-expanded", String(!isOpen));
+                    detailsPanel.classList.toggle("is-open", !isOpen);
                 });
-            });
+            }
+        });
 
-            lazyElements.forEach(element => {
-                lazyObserver.observe(element);
+        // Service Modal Functions
+        function openServiceModal(title, desc) {
+            document.getElementById('modal-service-title').innerText = title;
+            document.getElementById('modal-service-desc').innerText = desc;
+            document.getElementById('service-modal').classList.remove('hidden');
+        }
+
+        function closeServiceModal() {
+            document.getElementById('service-modal').classList.add('hidden');
+        }
+
+        // CRM Modal Functions
+        function toggleCRM() {
+            const modal = document.getElementById('crm-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        function checkCRMLogin() {
+            const pass = document.getElementById('crm-password').value;
+            if (pass === '1234') {
+                document.getElementById('crm-login-view').classList.add('hidden');
+                document.getElementById('crm-dashboard-view').classList.remove('hidden');
+                document.getElementById('login-error').classList.add('hidden');
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+
+        // Contact Form Submission & LocalStorage CRM Integration
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const newLead = {
+                    date: new Date().toLocaleDateString('el-GR'),
+                    name: document.getElementById('client-name').value,
+                    email: document.getElementById('client-email').value,
+                    phone: document.getElementById('client-phone').value,
+                    message: document.getElementById('client-message').value
+                };
+
+                let leads = JSON.parse(localStorage.getItem('crm_leads') || '[]');
+                leads.unshift(newLead);
+                localStorage.setItem('crm_leads', JSON.stringify(leads));
+
+                document.getElementById('form-success').classList.remove('hidden');
+                this.reset();
+                loadLeads();
+
+                setTimeout(() => {
+                    document.getElementById('form-success').classList.add('hidden');
+                }, 4000);
             });
+        }
+
+        // Load CRM Leads into Table
+        function loadLeads() {
+            const tbody = document.getElementById('crm-leads-table');
+            if (!tbody) return;
+            
+            const leads = JSON.parse(localStorage.getItem('crm_leads') || '[]');
+            
+            if (leads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">Δεν υπάρχουν αιτήματα ακόμα.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = leads.map(lead => `
+                <tr class="hover:bg-slate-50">
+                    <td class="p-3 text-xs text-slate-500">${lead.date}</td>
+                    <td class="p-3 font-semibold">${lead.name}</td>
+                    <td class="p-3 text-slate-600">${lead.email}</td>
+                    <td class="p-3 text-slate-600">${lead.phone || '-'}</td>
+                    <td class="p-3 text-slate-600 text-xs">${lead.message || '-'}</td>
+                </tr>
+            `).join('');
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'977e40d3e5c6323a',t:'MTc1NjY2MTM5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
